@@ -6,6 +6,7 @@ return {
   cmd = "Telescope",
   keys = {
     { "<D-F>", function() require("telescope.builtin").find_files() end, desc = "Find files" },
+    { "<D-e>", function() require("telescope.builtin").oldfiles() end, desc = "Show old files" },
     { "<D-A><D-F>", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
     { "<D-f><D-b>", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
     { "<D-f>", function() require("telescope.builtin").current_buffer_fuzzy_find() end, desc = "Search in current file" },
