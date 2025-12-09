@@ -9,13 +9,13 @@ g.loaded_netrwPlugin = 1
 
 -- UI
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.termguicolors = true
 
 -- Tabs / indentation
-opt.tabstop = 2
+opt.tabstop = 4
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true

@@ -1,3 +1,5 @@
+-- Plugin for searching files 
+
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },

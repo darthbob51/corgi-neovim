@@ -1,3 +1,5 @@
+-- Plugin for color scheme
+
 return {
   "rebelot/kanagawa.nvim",
   lazy = false,
