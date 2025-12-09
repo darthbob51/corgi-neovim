@@ -3,6 +3,9 @@
 local opt = vim.opt
 local g = vim.g
 
+opt.keymodel = "startsel,stopsel"
+opt.selectmode = "key"
+
 -- Disable netrw (since we use nvim-tree)
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1

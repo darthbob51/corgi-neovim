@@ -15,6 +15,6 @@ return {
       noremap = true,
       silent = true,
       desc = "Toggle terminal",
-  })
+    })
   end,
 }
