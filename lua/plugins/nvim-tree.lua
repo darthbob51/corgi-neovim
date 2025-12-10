@@ -1,22 +1,8 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    -- Existing Mappings
-    { "<D-1>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer (Cmd+1)" },
-    { "<D-n>", function()
-        require("nvim-tree.api").tree.open()
-        require("nvim-tree.api").fs.create()
-      end,
-      desc = "Create file in NvimTree",
-    },
-    { "<D-R>", function()
-        require("nvim-tree.api").fs.rename()
-      end,
-      desc = "Rename file in NvimTree",
-    },
-
+    { "<leader>1", "<cmd>NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
   },
   
   config = function()
@@ -29,9 +15,20 @@ return {
 
       tree_api.config.mappings.default_on_attach(bufnr)
 
-      vim.keymap.set("n", "<D-c>", tree_api.fs.copy.node, opts("Copy File/Folder"))
-      vim.keymap.set("n", "<D-x>", tree_api.fs.cut, opts("Cut File/Folder"))
-      vim.keymap.set("n", "<D-v>", tree_api.fs.paste, opts("Paste File/Folder"))
+      vim.keymap.set("n", "<leader>n", function()
+          require("nvim-tree.api").tree.open()
+          require("nvim-tree.api").fs.create()
+        end,
+        opts("Create file in NvimTree")
+      ) 
+      vim.keymap.set("n", "<leader>R", function()
+          require("nvim-tree.api").fs.rename()
+        end,
+       opts("Rename file in NvimTree")
+      )
+      vim.keymap.set("n", "<leader>c", tree_api.fs.copy.node, opts("Copy File/Folder"))
+      vim.keymap.set("n", "<leader>x", tree_api.fs.cut, opts("Cut File/Folder"))
+      vim.keymap.set("n", "<leader>v", tree_api.fs.paste, opts("Paste File/Folder"))
       
       vim.keymap.set("n", "<BS>", tree_api.fs.remove, opts("Delete File/Folder"))
       
@@ -49,8 +46,7 @@ return {
           show = {
             file = true,
             folder = true,
-            git = true,
-          },
+            git = true, },
         },
       },
       filters = {

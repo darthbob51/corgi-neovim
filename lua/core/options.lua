@@ -16,7 +16,7 @@ g.loaded_netrwPlugin = 1
 
 -- UI
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.termguicolors = true
