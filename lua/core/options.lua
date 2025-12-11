@@ -4,7 +4,7 @@ local opt = vim.opt
 local g = vim.g
 
 if g.neovide then
-  vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+  g.neovide_input_macos_option_key_is_meta = 'only_left'
 end
 
 opt.keymodel = "startsel,stopsel"
@@ -38,17 +38,16 @@ opt.smartcase = true
 opt.clipboard = "unnamedplus"
 
 -- Neovide Options
-vim.g.neovide_cursor_animation_length = 0
-vim.g.neovide_cursor_trail_size = 0
-vim.g.neovide_cursor_animate_in_insert_mode = false
-vim.g.neovide_cursor_animate_command_line = false
-vim.g.neovide_input_use_logo = true
-vim.g.neovide_scroll_animation_length = 0
+g.neovide_cursor_animation_length = 0
+g.neovide_cursor_trail_size = 0
+g.neovide_cursor_animate_in_insert_mode = false
+g.neovide_cursor_animate_command_line = false
+g.neovide_input_use_logo = true
+g.neovide_scroll_animation_length = 0
 
 -- Diagnostics
 
-vim.opt.signcolumn = "yes"
-vim.opt.updatetime = 500
+opt.updatetime = 400
 
 vim.diagnostic.config({
   virtual_text = false,
