@@ -6,10 +6,10 @@ return {
   keys = {
     { "<leader>1", "<cmd>NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
   },
-  
+
   config = function()
     local tree_api = require("nvim-tree.api")
-    
+
     local function on_attach(bufnr)
       local function opts(desc)
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -22,26 +22,24 @@ return {
           require("nvim-tree.api").fs.create()
         end,
         opts("Create file in NvimTree")
-      ) 
+      )
       vim.keymap.set("n", "<leader>R", function()
           require("nvim-tree.api").fs.rename()
         end,
-       opts("Rename file in NvimTree")
+        opts("Rename file in NvimTree")
       )
       vim.keymap.set("n", "<leader>c", tree_api.fs.copy.node, opts("Copy File/Folder"))
       vim.keymap.set("n", "<leader>x", tree_api.fs.cut, opts("Cut File/Folder"))
       vim.keymap.set("n", "<leader>v", tree_api.fs.paste, opts("Paste File/Folder"))
-      
       vim.keymap.set("n", "<BS>", tree_api.fs.remove, opts("Delete File/Folder"))
-      
       vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
-      vim.keymap.set("n", "s", function() 
+      vim.keymap.set("n", "s", function()
           tree_api.node.open.vertical()
-        end, 
+        end,
         opts("Open vertical")
       )
     end
-    
+
     require("nvim-tree").setup({
       view = {
         width = 30,
@@ -53,7 +51,8 @@ return {
           show = {
             file = true,
             folder = true,
-            git = true, },
+            git = true,
+          },
         },
       },
       filters = {
@@ -72,6 +71,14 @@ return {
         end
       end,
     })
-    
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      callback = function()
+        -- prevent recursion when entering the NvimTree buffer itself
+        if vim.bo.filetype ~= "NvimTree" then
+          tree_api.tree.find_file({ open = false, focus = false })
+        end
+      end,
+    })
   end,
 }

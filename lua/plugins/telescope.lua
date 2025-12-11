@@ -106,7 +106,7 @@ return {
       desc = "Global file search (entire home)",
     },
     {
-      "gdc",
+      "gd",
       function()
         require("telescope.builtin").lsp_definitions()
       end,
