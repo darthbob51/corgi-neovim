@@ -29,7 +29,16 @@ return {
             },
           },
           on_attach = function(client, bufnr)
-            client.server_capabilities.documentFormattingProvider = false
+            
+            if client.server_capabilities.documentFormattingProvider then
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({ bufnr = bufnr })
+                end,
+              })
+            end
+
             vim.keymap.set("n", "gd", vim.diagnostic.open_float, { buffer = bufnr, desc = "Show Diagnostics" })
 
             vim.api.nvim_create_autocmd("CursorHold", {

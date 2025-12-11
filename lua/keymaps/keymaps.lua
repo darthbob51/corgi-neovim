@@ -55,7 +55,8 @@ map("n", "<C-Right>", ":vertical resize +2<CR>")-- Make window wider
 map("n", "<S-l>", ":bnext<CR>")     -- Next buffer
 map("n", "<S-h>", ":bprevious<CR>") -- Previous buffer
 map("n", "<leader>bd", ":bdelete<CR>") -- Close current buffer
-
+map("n", "<leader>q", "<cmd>q<CR>")
+map("n", "<leader>w", "<cmd>wq<CR>")
 ---------------------------------------------------------------------
 -- Indentation Improvements
 ---------------------------------------------------------------------
@@ -87,6 +88,11 @@ map("n", "]d", vim.diagnostic.goto_next)     -- Go to next diagnostic
 map("n", "[d", vim.diagnostic.goto_prev)     -- Go to previous diagnostic
 map("n", "<leader>e", vim.diagnostic.open_float) -- Show diagnostic popup
 
+
+---------------------------------------------------------------------
+-- Terminal 
+-----------------------------------------------------------------------
+-- map("n", "<leader>t", function() vim.cmd("belowright 15split | terminal") end, { desc = "Open Terminal"})
 ---------------------------------------------------------------------
 -- Terminal Mode Escape (important for using built-in terminal)
 ---------------------------------------------------------------------
