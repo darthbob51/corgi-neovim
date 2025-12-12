@@ -11,6 +11,11 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",
+      {
+        "b0o/SchemaStore.nvim",
+        lazy = true,
+        version = false,
+      },
     },
     config = function()
       local mlsp = require("mason-lspconfig")
@@ -80,26 +85,6 @@ return {
         end
       end
 
-      local servers = {
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              cargo = { allFeatures = true },
-              checkOnSave = { command = "clippy" },
-              inlayHints = { bindingModeHints = { enable = false } },
-              rustfmt = { enable = true },
-            },
-          },
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              diagnostics = { globals = { "vim" } },
-            },
-          },
-        },
-      }
-
       vim.api.nvim_create_autocmd("BufWritePre", {
         callback = function(args)
           local clients = vim.lsp.get_clients({ bufnr = args.buf })
@@ -111,6 +96,63 @@ return {
           end
         end,
       })
+
+      local servers = {
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
+              checkOnSave = { command = "clippy" },
+              inlayHints = { bindingModeHints = { enable = false } },
+              rustfmt = { enable = true },
+              root_dir = require("lspconfig.util").root_pattern("app/Cargo.toml", "Cargo.toml", ".git"),
+            },
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = { globals = { "vim" } },
+            },
+          },
+        },
+        jsonls = {
+          before_init = function(_, new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              format = {
+                enable = true,
+              },
+              schemaStore = {
+                enable = false,
+                url = "",
+              },
+              schemas = require('schemastore').yaml.schemas(),
+              validate = true,
+              keyOrdering = false,
+            },
+            redhat = {
+              telemetry = { enabled = false },
+            },
+          }
+        },
+        dockerls = {}
+      }
 
       mlsp.setup({
         ensure_installed = vim.tbl_keys(servers),
