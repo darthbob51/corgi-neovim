@@ -1,5 +1,7 @@
 -- Plugin for syntax highlighting
 
+local km = require("keymaps.treesitter")
+
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
@@ -29,12 +31,24 @@ return {
     indent = {
       enable = true,
     },
+
     textobjects = {
       select = {
         enable = true,
         lookahead = true,
-        include_surrounding_whitespace = true,
-      }
+        keymaps = km.select,
+      },
+      move = {
+        enable = true,
+        set_jumps = true,
+        goto_next_start = km.move_next_start,
+        goto_previous_start = km.move_prev_start,
+      },
+      swap = {
+        enable = true,
+        swap_next = km.swap_next,
+        swap_previous = km.swap_prev,
+      },
     }
   },
 
