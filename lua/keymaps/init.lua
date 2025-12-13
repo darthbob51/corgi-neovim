@@ -53,6 +53,22 @@ map("n", "<S-h>", ":bprevious<CR>")    -- Previous buffer
 map("n", "<leader>bd", ":bdelete<CR>") -- Close current buffer
 map("n", "<leader>q", "<cmd>q<CR>")
 map("n", "<leader>w", "<cmd>w<CR>")
+map("n", "j", function()
+  if vim.v.count == 0 then
+    vim.cmd("normal! j^")
+  else
+    vim.cmd("normal! " .. vim.v.count .. "j^")
+  end
+end)
+
+map("n", "k", function()
+  if vim.v.count == 0 then
+    vim.cmd("normal! k^")
+  else
+    vim.cmd("normal! " .. vim.v.count .. "k^")
+  end
+end)
+
 ---------------------------------------------------------------------
 -- Indentation Improvements
 ---------------------------------------------------------------------
