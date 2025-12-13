@@ -28,12 +28,12 @@ return {
         end,
         opts("Rename file in NvimTree")
       )
-      vim.keymap.set("n", "<leader>c", tree_api.fs.copy.node, opts("Copy File/Folder"))
+      vim.keymap.set("n", "<leader>y", tree_api.fs.copy.node, opts("Copy File/Folder"))
       vim.keymap.set("n", "<leader>x", tree_api.fs.cut, opts("Cut File/Folder"))
-      vim.keymap.set("n", "<leader>v", tree_api.fs.paste, opts("Paste File/Folder"))
-      vim.keymap.set("n", "<BS>", tree_api.fs.remove, opts("Delete File/Folder"))
+      vim.keymap.set("n", "<leader>p", tree_api.fs.paste, opts("Paste File/Folder"))
+      vim.keymap.set("n", "<leader>d", tree_api.fs.remove, opts("Delete File/Folder"))
       vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
-      vim.keymap.set("n", "s", function()
+      vim.keymap.set("n", "<leader>s", function()
           tree_api.node.open.vertical()
         end,
         opts("Open vertical")

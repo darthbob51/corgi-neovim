@@ -4,7 +4,9 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
-
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter-textobjects"
+  },
   opts = {
     ensure_installed = {
       "lua",
@@ -27,6 +29,13 @@ return {
     indent = {
       enable = true,
     },
+    textObjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        include_surrounding_whitespace = true,
+      }
+    }
   },
 
   config = function(_, opts)

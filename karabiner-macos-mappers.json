@@ -1,0 +1,67 @@
+{
+  "description": "Caps Lock advanced mappings",
+  "manipulators": [
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to_if_alone": [
+        {
+          "key_code": "escape"
+        }
+      ],
+      "to_if_held_down": [
+        {
+          "key_code": "left_control"
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": {
+          "mandatory": [
+            "left_shift"
+          ],
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "page_down"
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": {
+          "mandatory": [
+            "right_shift"
+          ],
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "apple_vendor_keyboard_key_code": "mission_control",
+          "modifiers": [
+            "left_command"
+          ]
+        }
+      ]
+    }
+  ]
+}

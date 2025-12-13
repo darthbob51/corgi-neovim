@@ -12,10 +12,8 @@ vim.opt.clipboard = "unnamedplus"
 map("n", "<leader>d", "yyp", { desc = "Duplicate line" })
 map({ "v", "s" }, "<leader>d", "yP", { desc = "Duplicate selection" })
 
-map({ "n", "v", "s" }, "<leader>a", "<Esc>ggVG", { desc = "Select All" })
-
 -- Repeat recording on selected lines
-vim.keymap.set("x", "@a", ":<C-u>normal @a<CR>", { silent = true })
+map("x", "@a", ":<C-u>normal @a<CR>", { silent = true })
 
 ---------------------------------------------------------------------
 -- Searching & Cursor Centering
@@ -77,15 +75,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 ---------------------------------------------------------------------
 
 map("v", "p", '"_dP') -- Paste without overwriting the default register
-
----------------------------------------------------------------------
--- Diagnostics Navigation (built-in LSP)
----------------------------------------------------------------------
-
-map("n", "]d", vim.diagnostic.goto_next)         -- Go to next diagnostic
-map("n", "[d", vim.diagnostic.goto_prev)         -- Go to previous diagnostic
-map("n", "<leader>e", vim.diagnostic.open_float) -- Show diagnostic popup
-
 
 ---------------------------------------------------------------------
 -- Terminal
