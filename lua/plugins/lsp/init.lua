@@ -1,7 +1,7 @@
 return {
-  "williamboman/mason-lspconfig.nvim",
+  "mason-org/mason-lspconfig.nvim",
   dependencies = {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     "neovim/nvim-lspconfig",
     "b0o/SchemaStore.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -65,30 +65,20 @@ return {
       end,
     })
 
+    for name, settings in pairs(servers) do
+      local config = vim.lsp.config[name]
+      settings.on_attach = core.on_attach
+      settings.capabilities = core.capabilities
+      config = vim.tbl_deep_extend(
+        "force",
+        config,
+        settings or {}
+      )
+      vim.lsp.config(name, config)
+    end
+
     mlsp.setup({
       ensure_installed = vim.tbl_keys(servers),
-      automatic_installation = true,
-      handlers = {
-        function(server)
-          local config =
-              vim.lsp.config[server]()
-          if not config then
-            return
-          end
-
-          config.on_attach = core.on_attach
-          config.capabilities =
-              core.capabilities
-
-          config = vim.tbl_deep_extend(
-            "force",
-            config,
-            servers[server] or {}
-          )
-
-          vim.lsp.start(config)
-        end,
-      },
     })
   end,
 }

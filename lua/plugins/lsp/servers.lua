@@ -1,17 +1,21 @@
-local util = require("lspconfig.util")
-
 return {
   rust_analyzer = {
-    root_dir = util.root_pattern("app/Cargo.toml", "Cargo.toml", ".git"),
+    --  root_dir = util.root_pattern("app/Cargo.toml", "Cargo.toml", ".git"),
+    ft = { "rust" },
     settings = {
       ["rust-analyzer"] = {
         cargo = {
           allFeatures = true,
         },
-        checkOnSave = {
-          command = "clippy",
+        checkOnSave = true,
+        check = {
+          command = "clippy"
         },
         inlayHints = {
+          typeHints = { enable = true },
+          parameterHints = { enable = true },
+          chainingHints = { enable = true },
+          closingBraceHints = { enable = true },
           bindingModeHints = { enable = false },
         },
         rustfmt = {
