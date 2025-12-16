@@ -7,6 +7,9 @@ return {
     "nvim-tree/nvim-web-devicons",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-ui-select.nvim",
+    "nvim-telescope/telescope-dap.nvim",
+    "mfussenegger/nvim-dap",
+    "jonarrien/telescope-cmdline.nvim"
   },
   cmd = "Telescope",
   keys = require("keymaps.telescope").keys,
@@ -77,10 +80,27 @@ return {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown({}),
         },
+        cmdline = {
+          picker   = {
+            layout_config = {
+              width  = 120,
+              height = 25,
+            }
+          },
+          mappings = {
+            complete      = '<Tab>',
+            run_selection = '<C-CR>',
+            run_input     = '<CR>',
+          },
+          overseer = {
+            enabled = true,
+          },
+        },
       },
     })
 
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
+    telescope.load_extension("dap")
   end,
 }

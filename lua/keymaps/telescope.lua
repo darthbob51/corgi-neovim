@@ -128,7 +128,52 @@ M.keys = {
     "rn",
     vim.lsp.buf.rename,
     desc = "Rename"
-  }
+  },
+  {
+    "<leader>DL",
+    function()
+      require("telescope").extensions.dap.commands()
+    end,
+    desc = "DAP commands (Telescope)",
+  },
+  {
+    "<leader>DBL",
+    function()
+      require("telescope").extensions.dap.list_breakpoints()
+    end,
+    desc = "DAP breakpoints list",
+  },
+  {
+    "<leader>DF",
+    function()
+      require("telescope").extensions.dap.frames()
+    end,
+    desc = "DAP frames",
+  },
+  {
+    "<leader>DV",
+    function()
+      require("telescope").extensions.dap.variables()
+    end,
+    desc = "DAP variables",
+  },
+  {
+    "<leader>DC",
+    function()
+      require("telescope").extensions.dap.configurations()
+    end,
+    desc = "DAP configurations",
+  },
+  {
+    ":",
+    "<cmd>Telescope cmdline<CR>",
+    desc = "Cmdline",
+  },
+  {
+    "<leader><leader>",
+    "<cmd>Telescope cmdline<CR>",
+    desc = "Cmdline",
+  },
 }
 
 return M
