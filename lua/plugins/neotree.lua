@@ -11,12 +11,7 @@ return {
   },
   config = function()
     require("neo-tree").setup({
-      sources = {
-        "filesystem",
-        "buffers",
-        "git_status",
-      },
-      close_if_last_window = false,
+      close_if_last_window = true,
       popup_border_style = "rounded",
       window = {
         position = "float",
