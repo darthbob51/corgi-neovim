@@ -26,6 +26,7 @@ return {
         mappings = {
           ["<CR>"] = "open",
           ["q"] = "close_window",
+          ["H"] = "toggle_hidden",
           ["P"] = {
             "toggle_preview",
             config = {
