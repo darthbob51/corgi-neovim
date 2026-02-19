@@ -48,6 +48,28 @@ return {
     },
   },
 
+  gopls = {
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+        gofumpt = true,
+      }
+    }
+  },
+
+  bashls = {
+    settings = {
+      formatters_by_ft = {
+        sh = { "shfmt" },
+        bash = { "shfmt" },
+        zsh = { "shfmt" },
+      },
+    },
+  },
+
   jsonls = {
     before_init = function(_, config)
       config.settings.json.schemas =
@@ -94,4 +116,5 @@ return {
       },
     },
   }
+
 }
