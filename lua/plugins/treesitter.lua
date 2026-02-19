@@ -22,7 +22,8 @@ return {
       "toml",
       "yaml",
       "markdown",
-      "bash"
+      "bash",
+      "gomod"
     },
 
     highlight = {
