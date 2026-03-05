@@ -2,8 +2,10 @@
 
 local opt = vim.opt
 local g = vim.g
+local platform = require("core.platform")
 
-if g.neovide then
+
+if g.neovide and platform.is_mac then
   g.neovide_input_macos_option_key_is_meta = 'only_left'
 end
 
@@ -42,8 +44,20 @@ g.neovide_cursor_animation_length = 0
 g.neovide_cursor_trail_size = 0
 g.neovide_cursor_animate_in_insert_mode = false
 g.neovide_cursor_animate_command_line = false
-g.neovide_input_use_logo = true
 g.neovide_scroll_animation_length = 0
+
+if platform.is_mac then
+  g.neovide_input_use_logo = true
+end
+
+if platform.is_windows then
+  opt.shell = "pwsh"
+  opt.shellcmdflag = "-NoLogo -NonInteractive -Command"
+  opt.shellquote = ""
+  opt.shellxquote = ""
+  opt.shellpipe = "| Out-File -Encoding UTF8 %s"
+  opt.shellredir = "| Out-File -Encoding UTF8 %s"
+end
 
 -- Diagnostics
 

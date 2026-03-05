@@ -23,7 +23,8 @@ return {
       "yaml",
       "markdown",
       "bash",
-      "gomod"
+      "gomod",
+      "powershell"
     },
 
     highlight = {

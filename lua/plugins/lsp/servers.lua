@@ -1,4 +1,6 @@
-return {
+local platform = require("core.platform")
+
+local servers = {
   rust_analyzer = {
     --  root_dir = util.root_pattern("app/Cargo.toml", "Cargo.toml", ".git"),
     ft = { "rust" },
@@ -18,7 +20,7 @@ return {
           closingBraceHints = { enable = true },
           bindingModeHints = { enable = false },
         },
-        rustfmt = {
+        rucstfmt = {
           enable = true,
         },
       },
@@ -58,16 +60,6 @@ return {
         gofumpt = true,
       }
     }
-  },
-
-  bashls = {
-    settings = {
-      formatters_by_ft = {
-        sh = { "shfmt" },
-        bash = { "shfmt" },
-        zsh = { "shfmt" },
-      },
-    },
   },
 
   jsonls = {
@@ -115,6 +107,31 @@ return {
         },
       },
     },
-  }
-
+  },
 }
+
+if not platform.is_windows then
+  servers.bashls = {
+    settings = {
+      formatters_by_ft = {
+        sh   = { "shfmt" },
+        bash = { "shfmt" },
+        zsh  = { "shfmt" },
+      },
+    },
+  }
+end
+
+if platform.is_windows then
+  servers.powershell_es = {
+    settings = {
+      powershell = {
+        codeFormatting = {
+          preset = "OTBS",
+        },
+      },
+    },
+  }
+end
+
+return servers
