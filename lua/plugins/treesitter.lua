@@ -17,6 +17,7 @@ return {
       "rust",
       "go",
       "javascript",
+      "python",
       "java",
       "json",
       "toml",
